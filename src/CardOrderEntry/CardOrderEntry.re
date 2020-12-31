@@ -14,19 +14,10 @@ let make = (~onCardSelection) => {
         setCardOrder(_ => result);
     }
 
-    let onClick = _ => { onCardSelection(cardOrder); }
-
-    let result = cardOrder
-                    |> List.map(landTypeToString);
-
-    let a = switch result {
-        | [x, ..._] => x
-        | [] => "No more cards"
-    };
+    let onClick = _ => { onCardSelection(cardOrder); };
 
     <div>
         <input onChange type_="text"></input>
-        <div>{React.string(a)}</div>
-        <button onClick>{React.string("Next")}</button>
+        <button onClick>{React.string("Load")}</button>
     </div>;
 }; 

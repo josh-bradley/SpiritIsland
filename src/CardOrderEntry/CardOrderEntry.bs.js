@@ -23,14 +23,12 @@ function CardOrderEntry(Props) {
   var onClick = function (param) {
     return Curry._1(onCardSelection, cardOrder);
   };
-  var result = List.map(InvaderCards$Spiritisland.landTypeToString, cardOrder);
-  var a = result ? result.hd : "No more cards";
   return React.createElement("div", undefined, React.createElement("input", {
                   type: "text",
                   onChange: onChange
-                }), React.createElement("div", undefined, a), React.createElement("button", {
+                }), React.createElement("button", {
                   onClick: onClick
-                }, "Next"));
+                }, "Load"));
 }
 
 var make = CardOrderEntry;
