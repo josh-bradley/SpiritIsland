@@ -32,7 +32,7 @@ let make = () => {
                 | ([], []) => <CardOrderEntry onCardSelection={onCardSelection} />
                 | (_, _) => {
                     <div>
-                        <CardPanel drawPile={drawnPile} />
+                        <CardPanel drawnPile={drawnPile} drawPileCount={drawPile -> List.length} />
                         <button onClick={_ => drawCard(drawPile)}>{React.string("Draw")}</button>
                     </div>
                 }

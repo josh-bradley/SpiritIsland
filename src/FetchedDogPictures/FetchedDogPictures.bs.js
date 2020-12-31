@@ -4,7 +4,7 @@ var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
 
-function FetchedDogPictures(Props) {
+function make(param) {
   var match = React.useState(function () {
         return /* LoadingDogs */0;
       });
@@ -59,8 +59,6 @@ function FetchedDogPictures(Props) {
               }
             }, tmp);
 }
-
-var make = FetchedDogPictures;
 
 exports.make = make;
 /* react Not a pure module */

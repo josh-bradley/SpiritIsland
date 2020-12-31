@@ -5,7 +5,7 @@ type state =
   | ErrorFetchingDogs
   | LoadedDogs(array(string));
 
-[@react.component]
+[@react.comsponent]
 let make = () => {
   let (state, setState) = React.useState(() => LoadingDogs);
 

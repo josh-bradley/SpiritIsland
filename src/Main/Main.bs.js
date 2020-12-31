@@ -55,7 +55,8 @@ function Main(Props) {
   }
   if (exit === 1) {
     tmp = React.createElement("div", undefined, React.createElement(CardPanel$Spiritisland.make, {
-              drawPile: drawnPile
+              drawnPile: drawnPile,
+              drawPileCount: List.length(drawPile)
             }), React.createElement("button", {
               onClick: (function (param) {
                   return drawCard(drawPile);

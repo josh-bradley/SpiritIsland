@@ -5,11 +5,12 @@ var React = require("react");
 var CardDisplay$Spiritisland = require("./CardDisplay.bs.js");
 
 function CardPanel(Props) {
-  var drawPile = Props.drawPile;
+  var drawnPile = Props.drawnPile;
+  var drawPileCount = Props.drawPileCount;
   var match;
-  if (drawPile) {
-    var match$1 = drawPile.tl;
-    var e = drawPile.hd;
+  if (drawnPile) {
+    var match$1 = drawnPile.tl;
+    var e = drawnPile.hd;
     if (match$1) {
       var match$2 = match$1.tl;
       var b = match$1.hd;
@@ -46,7 +47,7 @@ function CardPanel(Props) {
                   card: match[1]
                 }), React.createElement(CardDisplay$Spiritisland.make, {
                   card: match[2]
-                }));
+                }), React.createElement("div", undefined, drawPileCount));
 }
 
 var make = CardPanel;

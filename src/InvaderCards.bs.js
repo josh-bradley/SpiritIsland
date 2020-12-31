@@ -1,111 +1,146 @@
 'use strict';
 
+var List = require("bs-platform/lib/js/list.js");
 var Js_math = require("bs-platform/lib/js/js_math.js");
-var Caml_array = require("bs-platform/lib/js/caml_array.js");
 
-var cardsLevel1 = [
-  {
+var cardsLevel1 = {
+  hd: {
     TAG: /* Level1 */0,
     _0: /* Sand */0
   },
-  {
-    TAG: /* Level1 */0,
-    _0: /* Jungle */1
-  },
-  {
-    TAG: /* Level1 */0,
-    _0: /* Wetland */2
-  },
-  {
-    TAG: /* Level1 */0,
-    _0: /* Mountain */3
+  tl: {
+    hd: {
+      TAG: /* Level1 */0,
+      _0: /* Jungle */1
+    },
+    tl: {
+      hd: {
+        TAG: /* Level1 */0,
+        _0: /* Wetland */2
+      },
+      tl: {
+        hd: {
+          TAG: /* Level1 */0,
+          _0: /* Mountain */3
+        },
+        tl: /* [] */0
+      }
+    }
   }
-];
+};
 
-var cardsLevel2 = [
-  {
+var cardsLevel2 = {
+  hd: {
     TAG: /* Level2 */1,
     _0: /* Sand */0
   },
-  {
-    TAG: /* Level2 */1,
-    _0: /* Jungle */1
-  },
-  {
-    TAG: /* Level2 */1,
-    _0: /* Wetland */2
-  },
-  {
-    TAG: /* Level2 */1,
-    _0: /* Mountain */3
-  },
-  {
-    TAG: /* Level2 */1,
-    _0: /* Coastal */4
+  tl: {
+    hd: {
+      TAG: /* Level2 */1,
+      _0: /* Jungle */1
+    },
+    tl: {
+      hd: {
+        TAG: /* Level2 */1,
+        _0: /* Wetland */2
+      },
+      tl: {
+        hd: {
+          TAG: /* Level2 */1,
+          _0: /* Mountain */3
+        },
+        tl: {
+          hd: {
+            TAG: /* Level2 */1,
+            _0: /* Coastal */4
+          },
+          tl: /* [] */0
+        }
+      }
+    }
   }
-];
+};
 
-var cardsLevel3 = [
-  {
+var cardsLevel3 = {
+  hd: {
     TAG: /* Level3 */2,
     _0: [
       /* Sand */0,
       /* Jungle */1
     ]
   },
-  {
-    TAG: /* Level3 */2,
-    _0: [
-      /* Sand */0,
-      /* Wetland */2
-    ]
-  },
-  {
-    TAG: /* Level3 */2,
-    _0: [
-      /* Sand */0,
-      /* Mountain */3
-    ]
-  },
-  {
-    TAG: /* Level3 */2,
-    _0: [
-      /* Jungle */1,
-      /* Wetland */2
-    ]
-  },
-  {
-    TAG: /* Level3 */2,
-    _0: [
-      /* Mountain */3,
-      /* Jungle */1
-    ]
-  },
-  {
-    TAG: /* Level3 */2,
-    _0: [
-      /* Wetland */2,
-      /* Mountain */3
-    ]
+  tl: {
+    hd: {
+      TAG: /* Level3 */2,
+      _0: [
+        /* Sand */0,
+        /* Wetland */2
+      ]
+    },
+    tl: {
+      hd: {
+        TAG: /* Level3 */2,
+        _0: [
+          /* Sand */0,
+          /* Mountain */3
+        ]
+      },
+      tl: {
+        hd: {
+          TAG: /* Level3 */2,
+          _0: [
+            /* Jungle */1,
+            /* Wetland */2
+          ]
+        },
+        tl: {
+          hd: {
+            TAG: /* Level3 */2,
+            _0: [
+              /* Mountain */3,
+              /* Jungle */1
+            ]
+          },
+          tl: {
+            hd: {
+              TAG: /* Level3 */2,
+              _0: [
+                /* Wetland */2,
+                /* Mountain */3
+              ]
+            },
+            tl: /* [] */0
+          }
+        }
+      }
+    }
   }
-];
+};
 
 function getRandomCard(cardGroup) {
-  var idx = Js_math.random_int(0, cardGroup.length);
-  return Caml_array.get(cardGroup, idx);
+  var idx = Js_math.random_int(0, List.length(cardGroup));
+  return List.nth(cardGroup, idx);
+}
+
+function filterList(filter, source) {
+  return List.filter(function (x) {
+                return List.for_all((function (y) {
+                              return y !== x;
+                            }), filter);
+              })(source);
 }
 
 function mapCardIdToCard(cardGroup, cardId) {
   var nextCard;
   switch (cardId) {
     case "1" :
-        nextCard = getRandomCard(cardsLevel1);
+        nextCard = getRandomCard(filterList(cardGroup, cardsLevel1));
         break;
     case "2" :
-        nextCard = getRandomCard(cardsLevel2);
+        nextCard = getRandomCard(filterList(cardGroup, cardsLevel2));
         break;
     case "3" :
-        nextCard = getRandomCard(cardsLevel3);
+        nextCard = getRandomCard(filterList(cardGroup, cardsLevel3));
         break;
     case "C" :
     case "c" :
@@ -158,6 +193,7 @@ exports.cardsLevel1 = cardsLevel1;
 exports.cardsLevel2 = cardsLevel2;
 exports.cardsLevel3 = cardsLevel3;
 exports.getRandomCard = getRandomCard;
+exports.filterList = filterList;
 exports.mapCardIdToCard = mapCardIdToCard;
 exports.landTypeToString = landTypeToString;
 /* No side effect */
