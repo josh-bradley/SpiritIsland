@@ -1,13 +1,14 @@
 [@react.component]
 let make = (~drawPile) => {
-    let (ravageCard, buildCard, exploreCard) = switch drawPile {
-        | [e, b, r, ..._] => (Some(r), Some(b), Some(e));
-        | [e, b] => (None, Some(b), Some(e));
-        | [e] => (None, None, Some(e));
-        | [] => (None, None, None);
+    let (ravageCard, buildCard, exploreCard, discardCount) = switch drawPile {
+        | [e, b, r, ...discard] => (Some(r), Some(b), Some(e), discard -> List.length);
+        | [e, b] => (None, Some(b), Some(e), 0);
+        | [e] => (None, None, Some(e), 0);
+        | [] => (None, None, None, 0);
     };
 
     <div>
+        <div>{React.int(discardCount)}</div>
         <CardDisplay card={ravageCard} />
         <CardDisplay card={buildCard} />
         <CardDisplay card={exploreCard} />
