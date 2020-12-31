@@ -28,8 +28,8 @@ let makeContainer = text => {
 };
 
 ReactDOMRe.render(
-  <CardOrderEntry>
-  </CardOrderEntry>,
+  <Main>
+  </Main>,
   makeContainer("Card order entry"),
 );
 

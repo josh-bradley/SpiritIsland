@@ -1,23 +1,32 @@
 open InvaderCards
 
 [@react.component]
-let make = () => {
-    let (cardOrder, setCardOrder) = React.useState(() => "");
-    let onChange = event => setCardOrder(ReactEvent.Form.target(event)##value);
+let make = (~onCardSelection) => {
+    let (cardOrder, setCardOrder) = React.useState(() => []);
+    let onChange = event => {
+        let cardOrderText = ReactEvent.Form.target(event)##value;
+        let result = cardOrderText 
+                        |> Js.String.split("")
+                        |> Array.to_list
+                        |> List.fold_left(mapCardIdToCard, [])
+                        |> List.rev;
 
-    let result = cardOrder 
-        |> Js.String.split("")
-        |> Array.to_list
-        |> List.fold_left(mapCardIdToCard, [])
-        |> List.map(landTypeToString)
-        |> List.rev;
-    
-    let show = result
-                |> List.fold_left((x, y) => x ++ ", " ++ y, "");
+        setCardOrder(_ => result);
+    }
 
-    Js.log(show);
+    let onClick = _ => { onCardSelection(cardOrder); }
+
+    let result = cardOrder
+                    |> List.map(landTypeToString);
+
+    let a = switch result {
+        | [x, ..._] => x
+        | [] => "No more cards"
+    };
 
     <div>
-        <input type_="text" onChange></input>
-    </div>
+        <input onChange type_="text"></input>
+        <div>{React.string(a)}</div>
+        <button onClick>{React.string("Next")}</button>
+    </div>;
 }; 

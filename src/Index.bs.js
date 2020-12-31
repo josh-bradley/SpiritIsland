@@ -2,8 +2,8 @@
 
 var React = require("react");
 var ReactDom = require("react-dom");
+var Main$Spiritisland = require("./Main/Main.bs.js");
 var ExampleStyles$Spiritisland = require("./ExampleStyles.bs.js");
-var CardOrderEntry$Spiritisland = require("./CardOrderEntry/CardOrderEntry.bs.js");
 
 var style = document.createElement("style");
 
@@ -25,7 +25,7 @@ function makeContainer(text) {
   return content;
 }
 
-ReactDom.render(React.createElement(CardOrderEntry$Spiritisland.make, {}), makeContainer("Card order entry"));
+ReactDom.render(React.createElement(Main$Spiritisland.make, {}), makeContainer("Card order entry"));
 
 exports.style = style;
 exports.makeContainer = makeContainer;
