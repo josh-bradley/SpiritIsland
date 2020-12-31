@@ -44,15 +44,25 @@ function Main(Props) {
           return x + (", " + y);
         }), "", List.map(InvaderCards$Spiritisland.landTypeToString, drawPile));
   console.log(result);
-  return React.createElement("div", undefined, React.createElement(CardOrderEntry$Spiritisland.make, {
-                  onCardSelection: onCardSelection
-                }), React.createElement(CardPanel$Spiritisland.make, {
-                  drawPile: drawnPile
-                }), React.createElement("button", {
-                  onClick: (function (param) {
-                      return drawCard(drawPile);
-                    })
-                }, "Draw"));
+  var tmp;
+  var exit = 0;
+  if (drawPile || drawnPile) {
+    exit = 1;
+  } else {
+    tmp = React.createElement(CardOrderEntry$Spiritisland.make, {
+          onCardSelection: onCardSelection
+        });
+  }
+  if (exit === 1) {
+    tmp = React.createElement("div", undefined, React.createElement(CardPanel$Spiritisland.make, {
+              drawPile: drawnPile
+            }), React.createElement("button", {
+              onClick: (function (param) {
+                  return drawCard(drawPile);
+                })
+            }, "Draw"));
+  }
+  return React.createElement("div", undefined, tmp);
 }
 
 var make = Main;

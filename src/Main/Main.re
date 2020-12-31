@@ -27,8 +27,16 @@ let make = () => {
     Js.log(result);
 
     <div>
-        <CardOrderEntry onCardSelection={onCardSelection} />
-        <CardPanel drawPile={drawnPile} />
-        <button onClick={_ => drawCard(drawPile)}>{React.string("Draw")}</button>
+        {
+            switch (drawPile, drawnPile) {
+                | ([], []) => <CardOrderEntry onCardSelection={onCardSelection} />
+                | (_, _) => {
+                    <div>
+                        <CardPanel drawPile={drawnPile} />
+                        <button onClick={_ => drawCard(drawPile)}>{React.string("Draw")}</button>
+                    </div>
+                }
+            }
+        }
     </div>
 }
