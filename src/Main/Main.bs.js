@@ -3,6 +3,7 @@
 var List = require("bs-platform/lib/js/list.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
+var Core = require("@material-ui/core");
 var CardPanel$Spiritisland = require("../CardPanel/CardPanel.bs.js");
 var InvaderCards$Spiritisland = require("../InvaderCards.bs.js");
 var CardOrderEntry$Spiritisland = require("../CardOrderEntry/CardOrderEntry.bs.js");
@@ -54,14 +55,17 @@ function Main(Props) {
         });
   }
   if (exit === 1) {
-    tmp = React.createElement("div", undefined, React.createElement(CardPanel$Spiritisland.make, {
+    tmp = React.createElement("div", undefined, React.createElement(Core.Button, {
+              children: "Button test putnoehuSSSS"
+            }), React.createElement(CardPanel$Spiritisland.make, {
               drawnPile: drawnPile,
               drawPileCount: List.length(drawPile)
-            }), React.createElement("button", {
+            }), React.createElement(Core.Button, {
               onClick: (function (param) {
                   return drawCard(drawPile);
-                })
-            }, "Draw"));
+                }),
+              children: "Draw"
+            }));
   }
   return React.createElement("div", undefined, tmp);
 }
