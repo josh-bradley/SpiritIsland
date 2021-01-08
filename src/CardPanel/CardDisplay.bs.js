@@ -1,6 +1,5 @@
 'use strict';
 
-var $$Array = require("bs-platform/lib/js/array.js");
 var React = require("react");
 var Card$Spiritisland = require("./Card.bs.js");
 var InvaderCards$Spiritisland = require("../InvaderCards.bs.js");
@@ -11,11 +10,9 @@ function CardDisplay(Props) {
         colour: "white",
         name: "No card"
       }];
-  return React.createElement("div", undefined, $$Array.map((function (x) {
-                    return React.createElement(Card$Spiritisland.make, {
-                                cardDetail: x
-                              });
-                  }), cardDetails));
+  return React.createElement("div", undefined, React.createElement(Card$Spiritisland.make, {
+                  cardDetails: cardDetails
+                }));
 }
 
 var make = CardDisplay;

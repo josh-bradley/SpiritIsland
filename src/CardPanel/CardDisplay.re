@@ -8,10 +8,6 @@ let make = (~card) => {
     };
 
     <div>
-        {
-            cardDetails
-            |> Array.map(x => { <Card cardDetail={x} /> })
-            |> React.array;
-        }
+        <Card cardDetails={cardDetails} />
     </div>;
 }
