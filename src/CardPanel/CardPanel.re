@@ -7,11 +7,25 @@ let make = (~drawnPile, ~drawPileCount) => {
         | [] => (None, None, None, 0);
     };
 
+    
+
     <div>
-        <div>{React.int(discardCount)}</div>
-        <CardDisplay card={ravageCard} />
-        <CardDisplay card={buildCard} />
-        <CardDisplay card={exploreCard} />
-        <div>{React.int(drawPileCount)}</div>
+        <MaterialUi_Grid container={true}>
+            <MaterialUi_Grid item={true} xs={MaterialUi.Grid.Xs._2}>
+                <div>{React.int(discardCount)}</div>
+            </MaterialUi_Grid>
+            <MaterialUi_Grid item={true} xs={MaterialUi.Grid.Xs._2}>
+                <CardDisplay card={ravageCard} />
+            </MaterialUi_Grid> 
+            <MaterialUi_Grid item={true} xs={MaterialUi.Grid.Xs._2}>
+                <CardDisplay card={buildCard} />
+            </MaterialUi_Grid>
+            <MaterialUi_Grid item={true} xs={MaterialUi.Grid.Xs._2}>
+                <CardDisplay card={exploreCard} />
+            </MaterialUi_Grid>
+            <MaterialUi_Grid item={true} xs={MaterialUi.Grid.Xs._2}>
+                <div>{React.int(drawPileCount)}</div>
+            </MaterialUi_Grid>
+        </MaterialUi_Grid>
     </div>
 }

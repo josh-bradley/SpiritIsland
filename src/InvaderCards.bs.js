@@ -162,31 +162,54 @@ function mapCardIdToCard(cardGroup, cardId) {
   }
 }
 
+function landToDetails(param) {
+  switch (param) {
+    case /* Sand */0 :
+        return {
+                colour: "#E8BD80",
+                name: "Sand"
+              };
+    case /* Jungle */1 :
+        return {
+                colour: "#558D56",
+                name: "Jungle"
+              };
+    case /* Wetland */2 :
+        return {
+                colour: "#BAE3EA",
+                name: "Wetland"
+              };
+    case /* Mountain */3 :
+        return {
+                colour: "#868686",
+                name: "Mountain"
+              };
+    case /* Coastal */4 :
+        return {
+                colour: "#65BDE4",
+                name: "Coastal"
+              };
+    
+  }
+}
+
 function landTypeToString(x) {
-  var landTypeVal;
+  var tmp;
   switch (x.TAG | 0) {
     case /* Level1 */0 :
     case /* Level2 */1 :
-        landTypeVal = x._0;
+        tmp = [x._0];
         break;
     case /* Level3 */2 :
-        landTypeVal = x._0[0];
+        var match = x._0;
+        tmp = [
+          match[0],
+          match[1]
+        ];
         break;
     
   }
-  switch (landTypeVal) {
-    case /* Sand */0 :
-        return "Sand";
-    case /* Jungle */1 :
-        return "Jungle";
-    case /* Wetland */2 :
-        return "Wetland";
-    case /* Mountain */3 :
-        return "Mountain";
-    case /* Coastal */4 :
-        return "Coastal";
-    
-  }
+  return tmp.map(landToDetails);
 }
 
 exports.cardsLevel1 = cardsLevel1;
@@ -195,5 +218,6 @@ exports.cardsLevel3 = cardsLevel3;
 exports.getRandomCard = getRandomCard;
 exports.filterList = filterList;
 exports.mapCardIdToCard = mapCardIdToCard;
+exports.landToDetails = landToDetails;
 exports.landTypeToString = landTypeToString;
 /* No side effect */

@@ -18,6 +18,6 @@ let make = (~onCardSelection) => {
 
     <div>
         <input onChange type_="text"></input>
-        <button onClick>{React.string("Load")}</button>
+        <MaterialUi_Button onClick>{React.string("Load")}</MaterialUi_Button>
     </div>;
 }; 

@@ -2,10 +2,16 @@ open InvaderCards
 
 [@react.component]
 let make = (~card) => {
-    let d = switch card {
+    let cardDetails = switch card {
         | Some(x) => x -> landTypeToString;
-        | None => "No card";
+        | None => [|{ name: "No card", colour: "white" }|];
     };
 
-    <div>{React.string(d)}</div>
+    <div>
+        {
+            cardDetails
+            |> Array.map(x => { <Card cardDetail={x} /> })
+            |> React.array;
+        }
+    </div>;
 }

@@ -2,6 +2,8 @@
 
 var List = require("bs-platform/lib/js/list.js");
 var React = require("react");
+var MaterialUi_Grid = require("@jsiebern/bs-material-ui/src/MaterialUi_Grid.bs.js");
+var Core = require("@material-ui/core");
 var CardDisplay$Spiritisland = require("./CardDisplay.bs.js");
 
 function CardPanel(Props) {
@@ -41,13 +43,36 @@ function CardPanel(Props) {
       0
     ];
   }
-  return React.createElement("div", undefined, React.createElement("div", undefined, match[3]), React.createElement(CardDisplay$Spiritisland.make, {
-                  card: match[0]
-                }), React.createElement(CardDisplay$Spiritisland.make, {
-                  card: match[1]
-                }), React.createElement(CardDisplay$Spiritisland.make, {
-                  card: match[2]
-                }), React.createElement("div", undefined, drawPileCount));
+  return React.createElement("div", undefined, React.createElement(Core.Grid, {
+                  children: null,
+                  container: true
+                }, React.createElement(Core.Grid, {
+                      children: React.createElement("div", undefined, match[3]),
+                      item: true,
+                      xs: MaterialUi_Grid.Xs._2
+                    }), React.createElement(Core.Grid, {
+                      children: React.createElement(CardDisplay$Spiritisland.make, {
+                            card: match[0]
+                          }),
+                      item: true,
+                      xs: MaterialUi_Grid.Xs._2
+                    }), React.createElement(Core.Grid, {
+                      children: React.createElement(CardDisplay$Spiritisland.make, {
+                            card: match[1]
+                          }),
+                      item: true,
+                      xs: MaterialUi_Grid.Xs._2
+                    }), React.createElement(Core.Grid, {
+                      children: React.createElement(CardDisplay$Spiritisland.make, {
+                            card: match[2]
+                          }),
+                      item: true,
+                      xs: MaterialUi_Grid.Xs._2
+                    }), React.createElement(Core.Grid, {
+                      children: React.createElement("div", undefined, drawPileCount),
+                      item: true,
+                      xs: MaterialUi_Grid.Xs._2
+                    })));
 }
 
 var make = CardPanel;

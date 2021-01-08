@@ -5,7 +5,6 @@ var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var Core = require("@material-ui/core");
 var CardPanel$Spiritisland = require("../CardPanel/CardPanel.bs.js");
-var InvaderCards$Spiritisland = require("../InvaderCards.bs.js");
 var CardOrderEntry$Spiritisland = require("../CardOrderEntry/CardOrderEntry.bs.js");
 
 function Main(Props) {
@@ -41,10 +40,6 @@ function Main(Props) {
           }));
     return drawCard(cards);
   };
-  var result = List.fold_left((function (x, y) {
-          return x + (", " + y);
-        }), "", List.map(InvaderCards$Spiritisland.landTypeToString, drawPile));
-  console.log(result);
   var tmp;
   var exit = 0;
   if (drawPile || drawnPile) {
@@ -55,9 +50,7 @@ function Main(Props) {
         });
   }
   if (exit === 1) {
-    tmp = React.createElement("div", undefined, React.createElement(Core.Button, {
-              children: "Button test putnoehuSSSS"
-            }), React.createElement(CardPanel$Spiritisland.make, {
+    tmp = React.createElement(React.Fragment, undefined, React.createElement(CardPanel$Spiritisland.make, {
               drawnPile: drawnPile,
               drawPileCount: List.length(drawPile)
             }), React.createElement(Core.Button, {

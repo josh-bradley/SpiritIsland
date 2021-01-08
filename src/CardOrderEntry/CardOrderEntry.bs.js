@@ -4,6 +4,7 @@ var List = require("bs-platform/lib/js/list.js");
 var $$Array = require("bs-platform/lib/js/array.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
+var Core = require("@material-ui/core");
 var InvaderCards$Spiritisland = require("../InvaderCards.bs.js");
 
 function CardOrderEntry(Props) {
@@ -26,9 +27,10 @@ function CardOrderEntry(Props) {
   return React.createElement("div", undefined, React.createElement("input", {
                   type: "text",
                   onChange: onChange
-                }), React.createElement("button", {
-                  onClick: onClick
-                }, "Load"));
+                }), React.createElement(Core.Button, {
+                  onClick: onClick,
+                  children: "Load"
+                }));
 }
 
 var make = CardOrderEntry;

@@ -1,3 +1,8 @@
+type cardTypeDetails = {
+    colour: string,
+    name: string
+};
+
 type landtype =
     | Sand
     | Jungle
@@ -42,18 +47,19 @@ let mapCardIdToCard = (cardGroup: list(invaderCard), cardId: string) => {
     }
 };
 
-let landTypeToString = (x) => {
-    let landTypeVal = switch x {
-        | Level1(a) => a
-        | Level2(a) => a
-        | Level3((a, _)) => a
-    };
+let landToDetails =
+    fun
+        | Sand => { name: "Sand", colour: "#E8BD80" }
+        | Jungle => { name: "Jungle", colour: "#558D56" }
+        | Wetland => { name: "Wetland", colour: "#BAE3EA" }
+        | Mountain => { name: "Mountain", colour: "#868686" }
+        | Coastal => { name: "Coastal", colour: "#65BDE4" };
 
-    switch landTypeVal {
-        | Sand => "Sand"
-        | Jungle => "Jungle"
-        | Wetland => "Wetland"
-        | Mountain => "Mountain"
-        | Coastal => "Coastal"
-    };
+let landTypeToString = (x) => {
+    switch x {
+        | Level1(a) => [|a|]
+        | Level2(a) => [|a|]
+        | Level3((a, b)) => [|a, b|]
+    }
+    |> Js.Array.map ((x) => landToDetails(x))
 };
