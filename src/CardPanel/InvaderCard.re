@@ -1,4 +1,5 @@
 open MaterialUi;
+open InvaderCards;
 [@react.component]
 let make = (~cardDetails) => {
     <Grid

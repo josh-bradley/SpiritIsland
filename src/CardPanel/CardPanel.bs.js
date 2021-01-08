@@ -52,19 +52,22 @@ function CardPanel(Props) {
                       xs: MaterialUi_Grid.Xs._2
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(CardDisplay$Spiritisland.make, {
-                            card: match[0]
+                            card: match[0],
+                            cardPosName: "Ravage"
                           }),
                       item: true,
                       xs: MaterialUi_Grid.Xs._2
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(CardDisplay$Spiritisland.make, {
-                            card: match[1]
+                            card: match[1],
+                            cardPosName: "Build"
                           }),
                       item: true,
                       xs: MaterialUi_Grid.Xs._2
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(CardDisplay$Spiritisland.make, {
-                            card: match[2]
+                            card: match[2],
+                            cardPosName: "Explore"
                           }),
                       item: true,
                       xs: MaterialUi_Grid.Xs._2

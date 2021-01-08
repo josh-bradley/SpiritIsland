@@ -1,13 +1,17 @@
-open InvaderCards
+open InvaderCards;
+open MaterialUi;
 
 [@react.component]
-let make = (~card) => {
+let make = (~card, ~cardPosName) => {
     let cardDetails = switch card {
         | Some(x) => x -> landTypeToString;
         | None => [|{ name: "No card", colour: "white" }|];
     };
 
-    <div>
-        <Card cardDetails={cardDetails} />
-    </div>;
+    <>
+        <InvaderCard cardDetails={cardDetails} />
+        <Typography variant={`H6}>
+            {React.string(cardPosName)}
+        </Typography>
+    </>;
 }

@@ -4,7 +4,7 @@ var $$Array = require("bs-platform/lib/js/array.js");
 var React = require("react");
 var Core = require("@material-ui/core");
 
-function Card(Props) {
+function InvaderCard(Props) {
   var cardDetails = Props.cardDetails;
   return React.createElement(Core.Grid, {
               children: $$Array.map((function (cardDetail) {
@@ -31,7 +31,7 @@ function Card(Props) {
             });
 }
 
-var make = Card;
+var make = InvaderCard;
 
 exports.make = make;
 /* react Not a pure module */
