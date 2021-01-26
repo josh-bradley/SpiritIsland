@@ -45,7 +45,11 @@ function CardPanel(Props) {
   }
   return React.createElement("div", undefined, React.createElement(Core.Grid, {
                   children: null,
-                  container: true
+                  container: true,
+                  spacing: 2,
+                  style: {
+                    flexGrow: "1"
+                  }
                 }, React.createElement(Core.Grid, {
                       children: React.createElement("div", undefined, match[3]),
                       item: true,

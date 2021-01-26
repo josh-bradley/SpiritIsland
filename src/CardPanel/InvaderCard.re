@@ -13,6 +13,7 @@ let make = (~cardDetails) => {
                 item={true}
                 style=(ReactDOM.Style.make(~flexGrow="1", ()))>
                 <Paper
+                    elevation={MaterialUi_Types.Number.int(8)}
                     style=(ReactDOM.Style.make(
                         ~color="#FFF",
                         ~height="100%",

@@ -10,7 +10,7 @@ let make = (~drawnPile, ~drawPileCount) => {
     
 
     <div>
-        <MaterialUi_Grid container={true}>
+        <MaterialUi_Grid container={true} spacing={`V2} style=(ReactDOM.Style.make(~flexGrow="1", ()))>
             <MaterialUi_Grid item={true} xs={MaterialUi.Grid.Xs._3}>
                 <div>{React.int(discardCount)}</div>
             </MaterialUi_Grid>

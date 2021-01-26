@@ -15,6 +15,7 @@ function CardDisplay(Props) {
   return React.createElement(React.Fragment, undefined, React.createElement(InvaderCard$Spiritisland.make, {
                   cardDetails: cardDetails
                 }), React.createElement(Core.Typography, {
+                  align: "center",
                   children: cardPosName,
                   variant: "h6"
                 }));

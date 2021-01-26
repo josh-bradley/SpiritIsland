@@ -10,7 +10,7 @@ let make = (~card, ~cardPosName) => {
 
     <>
         <InvaderCard cardDetails={cardDetails} />
-        <Typography variant={`H6}>
+        <Typography variant={`H6} align={`Center} >
             {React.string(cardPosName)}
         </Typography>
     </>;
