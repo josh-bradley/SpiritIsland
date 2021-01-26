@@ -24,8 +24,10 @@ let make = () => {
                 | ([], []) => <CardOrderEntry onCardSelection={onCardSelection} />
                 | (_, _) => {
                     <>
-                        <CardPanel drawnPile={drawnPile} drawPileCount={drawPile -> List.length} />
-                        <MaterialUi_Button onClick={_ => drawCard(drawPile)}>{React.string("Draw")}</MaterialUi_Button>
+                        <MaterialUi_Container maxWidth={MaterialUi.Container.MaxWidth.xl}>
+                          <CardPanel drawnPile={drawnPile} drawPileCount={drawPile -> List.length} />
+                          <MaterialUi_Button onClick={_ => drawCard(drawPile)}>{React.string("Draw")}</MaterialUi_Button>
+                        </MaterialUi_Container>
                     </>
                 }
             }

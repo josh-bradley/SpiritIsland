@@ -11,19 +11,19 @@ let make = (~drawnPile, ~drawPileCount) => {
 
     <div>
         <MaterialUi_Grid container={true}>
-            <MaterialUi_Grid item={true} xs={MaterialUi.Grid.Xs._2}>
+            <MaterialUi_Grid item={true} xs={MaterialUi.Grid.Xs._3}>
                 <div>{React.int(discardCount)}</div>
             </MaterialUi_Grid>
             <MaterialUi_Grid item={true} xs={MaterialUi.Grid.Xs._2}>
                 <CardDisplay card={ravageCard} cardPosName="Ravage" />
-            </MaterialUi_Grid> 
+            </MaterialUi_Grid>
             <MaterialUi_Grid item={true} xs={MaterialUi.Grid.Xs._2}>
                 <CardDisplay card={buildCard} cardPosName="Build" />
             </MaterialUi_Grid>
             <MaterialUi_Grid item={true} xs={MaterialUi.Grid.Xs._2}>
                 <CardDisplay card={exploreCard} cardPosName="Explore" />
             </MaterialUi_Grid>
-            <MaterialUi_Grid item={true} xs={MaterialUi.Grid.Xs._2}>
+            <MaterialUi_Grid item={true} xs={MaterialUi.Grid.Xs._3}>
                 <div>{React.int(drawPileCount)}</div>
             </MaterialUi_Grid>
         </MaterialUi_Grid>

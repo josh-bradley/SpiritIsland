@@ -3,30 +3,15 @@
 var React = require("react");
 var ReactDom = require("react-dom");
 var Main$Spiritisland = require("./Main/Main.bs.js");
-var ExampleStyles$Spiritisland = require("./ExampleStyles.bs.js");
 
-var style = document.createElement("style");
-
-document.head.appendChild(style);
-
-style.innerHTML = ExampleStyles$Spiritisland.style;
-
-function makeContainer(text) {
+function makeContainer(param) {
   var container = document.createElement("div");
-  container.className = "container";
-  var title = document.createElement("div");
-  title.className = "containerTitle";
-  title.innerText = text;
-  var content = document.createElement("div");
-  content.className = "containerContent";
-  container.appendChild(title);
-  container.appendChild(content);
+  container.setAttribute("style", "width:100%");
   document.body.appendChild(container);
-  return content;
+  return container;
 }
 
-ReactDom.render(React.createElement(Main$Spiritisland.make, {}), makeContainer("Card order entry"));
+ReactDom.render(React.createElement(Main$Spiritisland.make, {}), makeContainer(undefined));
 
-exports.style = style;
 exports.makeContainer = makeContainer;
-/* style Not a pure module */
+/*  Not a pure module */

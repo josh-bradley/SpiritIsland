@@ -49,7 +49,7 @@ function CardPanel(Props) {
                 }, React.createElement(Core.Grid, {
                       children: React.createElement("div", undefined, match[3]),
                       item: true,
-                      xs: MaterialUi_Grid.Xs._2
+                      xs: MaterialUi_Grid.Xs._3
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(CardDisplay$Spiritisland.make, {
                             card: match[0],
@@ -74,7 +74,7 @@ function CardPanel(Props) {
                     }), React.createElement(Core.Grid, {
                       children: React.createElement("div", undefined, drawPileCount),
                       item: true,
-                      xs: MaterialUi_Grid.Xs._2
+                      xs: MaterialUi_Grid.Xs._3
                     })));
 }
 
