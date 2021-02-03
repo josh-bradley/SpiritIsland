@@ -9,7 +9,7 @@
 
 let makeContainer = () => {
   let container = document##createElement("div");
-  container##setAttribute("style", "width:100%")
+  container##setAttribute("style", "width:100%") |> ignore
   let () = document##body##appendChild(container);
 
   container;
