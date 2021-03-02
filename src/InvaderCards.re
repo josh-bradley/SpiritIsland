@@ -55,11 +55,10 @@ let landToDetails =
         | Mountain => { name: "Mountain", colour: "#868686" }
         | Coastal => { name: "Coastal", colour: "#65BDE4" };
 
-let landTypeToString = (x) => {
+let landTypeToDetails2 = (x) => {
     switch x {
-        | Level1(a) => [|a|]
-        | Level2(a) => [|a|]
-        | Level3((a, b)) => [|a, b|]
-    }
-    |> Js.Array.map ((x) => landToDetails(x))
+        | Level1(a) => [a]
+        | Level2(a) => [a]
+        | Level3((a, b)) => [a, b]
+    } |> List.map ((x) => landToDetails(x))
 };

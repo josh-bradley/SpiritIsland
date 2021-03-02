@@ -193,23 +193,29 @@ function landToDetails(param) {
   }
 }
 
-function landTypeToString(x) {
+function landTypeToDetails2(x) {
   var tmp;
   switch (x.TAG | 0) {
     case /* Level1 */0 :
     case /* Level2 */1 :
-        tmp = [x._0];
+        tmp = {
+          hd: x._0,
+          tl: /* [] */0
+        };
         break;
     case /* Level3 */2 :
         var match = x._0;
-        tmp = [
-          match[0],
-          match[1]
-        ];
+        tmp = {
+          hd: match[0],
+          tl: {
+            hd: match[1],
+            tl: /* [] */0
+          }
+        };
         break;
     
   }
-  return tmp.map(landToDetails);
+  return List.map(landToDetails, tmp);
 }
 
 exports.cardsLevel1 = cardsLevel1;
@@ -219,5 +225,5 @@ exports.getRandomCard = getRandomCard;
 exports.filterList = filterList;
 exports.mapCardIdToCard = mapCardIdToCard;
 exports.landToDetails = landToDetails;
-exports.landTypeToString = landTypeToString;
+exports.landTypeToDetails2 = landTypeToDetails2;
 /* No side effect */

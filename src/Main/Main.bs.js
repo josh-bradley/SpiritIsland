@@ -30,7 +30,10 @@ function Main(Props) {
           }));
     return Curry._1(setDrawnPile, (function (param) {
                   return {
-                          hd: nextCard,
+                          hd: {
+                            hd: nextCard,
+                            tl: /* [] */0
+                          },
                           tl: drawnPile
                         };
                 }));

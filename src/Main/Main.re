@@ -7,7 +7,7 @@ let make = () => {
         switch dp {
             | [nextCard, ...rest] => {
                 setDrawPile(_ => rest)
-                setDrawnPile(_ => [nextCard, ...drawnPile]);
+                setDrawnPile(_ => [[nextCard], ...drawnPile]);
             }
             | [] => ()
         }
