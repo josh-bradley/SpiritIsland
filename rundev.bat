@@ -1,0 +1,1 @@
+wt -M -d d:\code\projects\spiritisland ; split-pane -V -d d:\code\projects\spiritisland ; split-pane -d d:\code\projects\spiritisland -H
