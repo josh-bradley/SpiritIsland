@@ -19,30 +19,14 @@ function Main(Props) {
       });
   var setDrawnPile = match$1[1];
   var drawnPile = match$1[0];
-  var drawCard = function (dp) {
-    if (!dp) {
-      return ;
-    }
-    var rest = dp.tl;
-    var nextCard = dp.hd;
-    Curry._1(setDrawPile, (function (param) {
-            return rest;
-          }));
-    return Curry._1(setDrawnPile, (function (param) {
-                  return {
-                          hd: {
-                            hd: nextCard,
-                            tl: /* [] */0
-                          },
-                          tl: drawnPile
-                        };
-                }));
-  };
+  var match$2 = React.useState(function () {
+        return false;
+      });
+  var setIsExploring = match$2[1];
   var onCardSelection = function (cards) {
-    Curry._1(setDrawPile, (function (param) {
-            return cards;
-          }));
-    return drawCard(cards);
+    return Curry._1(setDrawPile, (function (param) {
+                  return cards;
+                }));
   };
   var tmp;
   var exit = 0;
@@ -59,13 +43,62 @@ function Main(Props) {
               maxWidth: MaterialUi_Container.MaxWidth.xl
             }, React.createElement(CardPanel$Spiritisland.make, {
                   drawnPile: drawnPile,
-                  drawPileCount: List.length(drawPile)
-                }), React.createElement(Core.Button, {
-                  onClick: (function (param) {
-                      return drawCard(drawPile);
-                    }),
-                  children: "Draw"
-                })));
+                  drawPileCount: List.length(drawPile),
+                  additionalCardSlotName: "Build"
+                }), match$2[0] ? React.createElement(Core.Button, {
+                    onClick: (function (param) {
+                        Curry._1(setDrawnPile, (function (param) {
+                                return {
+                                        hd: /* [] */0,
+                                        tl: drawnPile
+                                      };
+                              }));
+                        return Curry._1(setIsExploring, (function (param) {
+                                      return false;
+                                    }));
+                      }),
+                    children: "Advance Cards"
+                  }) : React.createElement(Core.Button, {
+                    onClick: (function (param) {
+                        if (!drawPile) {
+                          return ;
+                        }
+                        var rest = drawPile.tl;
+                        var nextCard = drawPile.hd;
+                        Curry._1(setDrawPile, (function (param) {
+                                return rest;
+                              }));
+                        if (drawnPile) {
+                          if (!drawnPile.hd) {
+                            var actualDrawnPile = drawnPile.tl;
+                            Curry._1(setDrawnPile, (function (param) {
+                                    return {
+                                            hd: {
+                                              hd: nextCard,
+                                              tl: /* [] */0
+                                            },
+                                            tl: actualDrawnPile
+                                          };
+                                  }));
+                          }
+                          
+                        } else {
+                          Curry._1(setDrawnPile, (function (param) {
+                                  return {
+                                          hd: {
+                                            hd: nextCard,
+                                            tl: /* [] */0
+                                          },
+                                          tl: /* [] */0
+                                        };
+                                }));
+                        }
+                        return Curry._1(setIsExploring, (function (param) {
+                                      return true;
+                                    }));
+                      }),
+                    children: "Explore"
+                  })));
   }
   return React.createElement("div", undefined, tmp);
 }

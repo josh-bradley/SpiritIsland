@@ -13,32 +13,32 @@ function CardPanel(Props) {
   var match;
   if (drawnPile) {
     var match$1 = drawnPile.tl;
-    var f = drawnPile.hd;
+    var e = drawnPile.hd;
     if (match$1) {
       var match$2 = match$1.tl;
-      var e = match$1.hd;
+      var b = match$1.hd;
       if (match$2) {
         var discard = match$2.tl;
-        var b = match$2.hd;
+        var r = match$2.hd;
         match = discard ? [
-            f,
             discard.hd,
+            r,
             b,
             e,
             List.length(discard.tl)
           ] : [
             undefined,
+            r,
             b,
             e,
-            f,
             List.length(discard)
           ];
       } else {
         match = [
           undefined,
           undefined,
+          b,
           e,
-          f,
           0
         ];
       }
@@ -47,7 +47,7 @@ function CardPanel(Props) {
         undefined,
         undefined,
         undefined,
-        f,
+        e,
         0
       ];
     }

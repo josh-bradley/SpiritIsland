@@ -1,7 +1,7 @@
 [@react.component]
 let make = (~drawnPile, ~drawPileCount, ~additionalCardSlotName: option(string)=?) => {
     let (additionalCard, ravageCard, buildCard, exploreCard, discardCount) = switch drawnPile {
-        | [f, e, b, r, ...discard] => (Some(f), Some(r), Some(b), Some(e), discard -> List.length);  
+        | [e, b, r, f, ...discard] => (Some(f), Some(r), Some(b), Some(e), discard -> List.length);  
         | [e, b, r, ...discard] => (None, Some(r), Some(b), Some(e), discard -> List.length);
         | [e, b] => (None, None, Some(b), Some(e), 0);
         | [e] => (None, None, None, Some(e), 0);

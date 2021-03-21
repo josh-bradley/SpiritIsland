@@ -15,4 +15,4 @@ let make = (~card, ~cardPosName) => {
             {React.string(cardPosName)}
         </MaterialUi_Typography>
     </>;
-}
+} 
