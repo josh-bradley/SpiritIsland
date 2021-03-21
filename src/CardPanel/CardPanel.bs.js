@@ -2,6 +2,7 @@
 
 var List = require("bs-platform/lib/js/list.js");
 var React = require("react");
+var Belt_Option = require("bs-platform/lib/js/belt_Option.js");
 var MaterialUi_Grid = require("@jsiebern/bs-material-ui/src/MaterialUi_Grid.bs.js");
 var Core = require("@material-ui/core");
 var CardDisplay$Spiritisland = require("./CardDisplay.bs.js");
@@ -10,6 +11,7 @@ function CardPanel(Props) {
   var drawnPile = Props.drawnPile;
   var drawPileCount = Props.drawPileCount;
   var additionalCardSlotName = Props.additionalCardSlotName;
+  var isAdditionalCardInPlay = Belt_Option.isSome(additionalCardSlotName);
   var match;
   if (drawnPile) {
     var match$1 = drawnPile.tl;
@@ -20,19 +22,28 @@ function CardPanel(Props) {
       if (match$2) {
         var discard = match$2.tl;
         var r = match$2.hd;
-        match = discard ? [
+        var exit = 0;
+        if (discard && isAdditionalCardInPlay) {
+          match = [
             discard.hd,
             r,
             b,
             e,
             List.length(discard.tl)
-          ] : [
+          ];
+        } else {
+          exit = 1;
+        }
+        if (exit === 1) {
+          match = [
             undefined,
             r,
             b,
             e,
             List.length(discard)
           ];
+        }
+        
       } else {
         match = [
           undefined,

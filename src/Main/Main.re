@@ -35,7 +35,7 @@ let make = () => {
                 | (_, _) => {
                     <>
                         <MaterialUi_Container maxWidth={MaterialUi.Container.MaxWidth.xl}>
-                          <CardPanel drawnPile drawPileCount={drawPile -> List.length} additionalCardSlotName="Build" />
+                          <CardPanel drawnPile drawPileCount={drawPile -> List.length} />
                           {
                             switch(isExploring) {
                               | true => <MaterialUi_Button onClick={_ => advanceCards()}>{React.string("Advance Cards")}</MaterialUi_Button>

@@ -43,8 +43,7 @@ function Main(Props) {
               maxWidth: MaterialUi_Container.MaxWidth.xl
             }, React.createElement(CardPanel$Spiritisland.make, {
                   drawnPile: drawnPile,
-                  drawPileCount: List.length(drawPile),
-                  additionalCardSlotName: "Build"
+                  drawPileCount: List.length(drawPile)
                 }), match$2[0] ? React.createElement(Core.Button, {
                     onClick: (function (param) {
                         Curry._1(setDrawnPile, (function (param) {
