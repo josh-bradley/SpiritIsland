@@ -8,11 +8,7 @@ let make = () => {
         switch dp {
             | [nextCard, ...rest] => {
                 setDrawPile(_ => rest)
-                switch drawnPile {
-                  | [[], ...actualDrawnPile] => setDrawnPile(_ => [[nextCard], ...actualDrawnPile])
-                  | [_, ..._] => ()
-                  | [] => setDrawnPile(_ => [[nextCard]]);
-                }
+                setDrawnPile(_ => [[nextCard], ...drawnPile])
                 setIsExploring(_ => true)
             }
             | [] => ()
@@ -20,7 +16,6 @@ let make = () => {
     };
 
     let advanceCards = () => {
-      setDrawnPile(_ => [[], ...drawnPile]);
       setIsExploring(_ => false);
     };
 
@@ -35,7 +30,7 @@ let make = () => {
                 | (_, _) => {
                     <>
                         <MaterialUi_Container maxWidth={MaterialUi.Container.MaxWidth.xl}>
-                          <CardPanel drawnPile drawPileCount={drawPile -> List.length} />
+                          <CardPanel drawnPile drawPileCount={drawPile -> List.length} isExploring={isExploring} />
                           {
                             switch(isExploring) {
                               | true => <MaterialUi_Button onClick={_ => advanceCards()}>{React.string("Advance Cards")}</MaterialUi_Button>

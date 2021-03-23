@@ -23,6 +23,8 @@ function CardDisplay(Props) {
                   align: "center",
                   children: cardPosName,
                   variant: "h6"
+                }), React.createElement(Core.Button, {
+                  children: "Pause"
                 }));
 }
 

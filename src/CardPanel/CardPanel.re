@@ -1,7 +1,17 @@
 [@react.component]
-let make = (~drawnPile, ~drawPileCount, ~additionalCardSlotName: option(string)=?) => {
+let make = (~drawnPile, ~drawPileCount, ~additionalCardSlotName: option(string)=?, ~isExploring) => {
+    let (cards, setCards) = React.useState(() => drawnPile);
+
+    React.useEffect2(() => {
+      switch isExploring {
+        | true => setCards(_ => drawnPile)
+        | false => setCards(_ => [[], ...drawnPile])
+      }
+      None
+    }, (isExploring, drawnPile))
+
     let isAdditionalCardInPlay = additionalCardSlotName -> Belt.Option.isSome;
-    let (additionalCard, ravageCard, buildCard, exploreCard, discardCount) = switch drawnPile {
+    let (additionalCard, ravageCard, buildCard, exploreCard, discardCount) = switch cards {
         | [e, b, r, f, ...discard] when isAdditionalCardInPlay => (Some(f), Some(r), Some(b), Some(e), discard -> List.length);  
         | [e, b, r, ...discard] => (None, Some(r), Some(b), Some(e), discard -> List.length);
         | [e, b] => (None, None, Some(b), Some(e), 0);

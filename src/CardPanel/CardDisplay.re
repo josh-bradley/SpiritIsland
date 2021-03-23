@@ -14,5 +14,6 @@ let make = (~card, ~cardPosName) => {
         <MaterialUi_Typography variant={`H6} align={`Center} >
             {React.string(cardPosName)}
         </MaterialUi_Typography>
+        <MaterialUi_Button>{React.string("Pause")}</MaterialUi_Button>
     </>;
 } 

@@ -1,6 +1,7 @@
 'use strict';
 
 var List = require("bs-platform/lib/js/list.js");
+var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var Belt_Option = require("bs-platform/lib/js/belt_Option.js");
 var MaterialUi_Grid = require("@jsiebern/bs-material-ui/src/MaterialUi_Grid.bs.js");
@@ -11,20 +12,44 @@ function CardPanel(Props) {
   var drawnPile = Props.drawnPile;
   var drawPileCount = Props.drawPileCount;
   var additionalCardSlotName = Props.additionalCardSlotName;
+  var isExploring = Props.isExploring;
+  var match = React.useState(function () {
+        return drawnPile;
+      });
+  var setCards = match[1];
+  var cards = match[0];
+  React.useEffect((function () {
+          if (isExploring) {
+            Curry._1(setCards, (function (param) {
+                    return drawnPile;
+                  }));
+          } else {
+            Curry._1(setCards, (function (param) {
+                    return {
+                            hd: /* [] */0,
+                            tl: drawnPile
+                          };
+                  }));
+          }
+          
+        }), [
+        isExploring,
+        drawnPile
+      ]);
   var isAdditionalCardInPlay = Belt_Option.isSome(additionalCardSlotName);
-  var match;
-  if (drawnPile) {
-    var match$1 = drawnPile.tl;
-    var e = drawnPile.hd;
-    if (match$1) {
-      var match$2 = match$1.tl;
-      var b = match$1.hd;
-      if (match$2) {
-        var discard = match$2.tl;
-        var r = match$2.hd;
+  var match$1;
+  if (cards) {
+    var match$2 = cards.tl;
+    var e = cards.hd;
+    if (match$2) {
+      var match$3 = match$2.tl;
+      var b = match$2.hd;
+      if (match$3) {
+        var discard = match$3.tl;
+        var r = match$3.hd;
         var exit = 0;
         if (discard && isAdditionalCardInPlay) {
-          match = [
+          match$1 = [
             discard.hd,
             r,
             b,
@@ -35,7 +60,7 @@ function CardPanel(Props) {
           exit = 1;
         }
         if (exit === 1) {
-          match = [
+          match$1 = [
             undefined,
             r,
             b,
@@ -45,7 +70,7 @@ function CardPanel(Props) {
         }
         
       } else {
-        match = [
+        match$1 = [
           undefined,
           undefined,
           b,
@@ -54,7 +79,7 @@ function CardPanel(Props) {
         ];
       }
     } else {
-      match = [
+      match$1 = [
         undefined,
         undefined,
         undefined,
@@ -63,7 +88,7 @@ function CardPanel(Props) {
       ];
     }
   } else {
-    match = [
+    match$1 = [
       undefined,
       undefined,
       undefined,
@@ -79,33 +104,33 @@ function CardPanel(Props) {
                     flexGrow: "1"
                   }
                 }, React.createElement(Core.Grid, {
-                      children: React.createElement("div", undefined, match[4]),
+                      children: React.createElement("div", undefined, match$1[4]),
                       item: true,
                       xs: MaterialUi_Grid.Xs._2
                     }), additionalCardSlotName !== undefined ? React.createElement(Core.Grid, {
                         children: React.createElement(CardDisplay$Spiritisland.make, {
-                              card: match[0],
+                              card: match$1[0],
                               cardPosName: additionalCardSlotName
                             }),
                         item: true,
                         xs: MaterialUi_Grid.Xs._2
                       }) : null, React.createElement(Core.Grid, {
                       children: React.createElement(CardDisplay$Spiritisland.make, {
-                            card: match[1],
+                            card: match$1[1],
                             cardPosName: "Ravage"
                           }),
                       item: true,
                       xs: MaterialUi_Grid.Xs._2
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(CardDisplay$Spiritisland.make, {
-                            card: match[2],
+                            card: match$1[2],
                             cardPosName: "Build"
                           }),
                       item: true,
                       xs: MaterialUi_Grid.Xs._2
                     }), React.createElement(Core.Grid, {
                       children: React.createElement(CardDisplay$Spiritisland.make, {
-                            card: match[3],
+                            card: match$1[3],
                             cardPosName: "Explore"
                           }),
                       item: true,

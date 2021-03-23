@@ -23,6 +23,7 @@ function Main(Props) {
         return false;
       });
   var setIsExploring = match$2[1];
+  var isExploring = match$2[0];
   var onCardSelection = function (cards) {
     return Curry._1(setDrawPile, (function (param) {
                   return cards;
@@ -43,15 +44,10 @@ function Main(Props) {
               maxWidth: MaterialUi_Container.MaxWidth.xl
             }, React.createElement(CardPanel$Spiritisland.make, {
                   drawnPile: drawnPile,
-                  drawPileCount: List.length(drawPile)
-                }), match$2[0] ? React.createElement(Core.Button, {
+                  drawPileCount: List.length(drawPile),
+                  isExploring: isExploring
+                }), isExploring ? React.createElement(Core.Button, {
                     onClick: (function (param) {
-                        Curry._1(setDrawnPile, (function (param) {
-                                return {
-                                        hd: /* [] */0,
-                                        tl: drawnPile
-                                      };
-                              }));
                         return Curry._1(setIsExploring, (function (param) {
                                       return false;
                                     }));
@@ -67,31 +63,15 @@ function Main(Props) {
                         Curry._1(setDrawPile, (function (param) {
                                 return rest;
                               }));
-                        if (drawnPile) {
-                          if (!drawnPile.hd) {
-                            var actualDrawnPile = drawnPile.tl;
-                            Curry._1(setDrawnPile, (function (param) {
-                                    return {
-                                            hd: {
-                                              hd: nextCard,
-                                              tl: /* [] */0
-                                            },
-                                            tl: actualDrawnPile
-                                          };
-                                  }));
-                          }
-                          
-                        } else {
-                          Curry._1(setDrawnPile, (function (param) {
-                                  return {
-                                          hd: {
-                                            hd: nextCard,
-                                            tl: /* [] */0
-                                          },
+                        Curry._1(setDrawnPile, (function (param) {
+                                return {
+                                        hd: {
+                                          hd: nextCard,
                                           tl: /* [] */0
-                                        };
-                                }));
-                        }
+                                        },
+                                        tl: drawnPile
+                                      };
+                              }));
                         return Curry._1(setIsExploring, (function (param) {
                                       return true;
                                     }));
